@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Select, Menu, MenuButton, MenuList, MenuItem, Button, Stack} from '@chakra-ui/core';
 import {FaTable, FaList} from "react-icons/fa";
 
 import languages from '../data/languages.json'
 
-export function Filters() {
+export function Filters(props) {
+    const {onViewChange} = props;
+    const [viewType, setViewType] = useState('grid');
+    
+    useEffect(() => {
+        onViewChange(viewType);
+    },[viewType]);
+
     return(
         <Stack isInline>
             <Select>
@@ -28,9 +35,35 @@ export function Filters() {
                 </MenuList>
             </Menu>
 
-            <Stack isInline spacing={0} borderWidth={1} bg="white" rounded="5px" alignItems="center" ml="10px">
-                <Button h="100%" fontWeight={400} roundedRight={0} leftIcon={FaTable} bg="white">Grid</Button>
-                <Button h="100%" fontWeight={400} roundedLeft={0} leftIcon={FaList} bg="white">List</Button>
+            <Stack 
+            isInline 
+            spacing={0} 
+            borderWidth={1} 
+            bg="white" 
+            rounded="5px" 
+            alignItems="center" 
+            ml="10px"
+            >
+                <Button 
+                h="100%" 
+                onClick={() => setViewType("grid")} 
+                fontWeight={400} 
+                roundedRight={0} 
+                leftIcon={FaTable} 
+                bg={viewType === "grid" ? "gray.200" : "white"}
+                >
+                    Grid
+                </Button>
+                <Button 
+                h="100%" 
+                onClick={() => setViewType("list")} 
+                fontWeight={400} 
+                roundedLeft={0} 
+                leftIcon={FaList} 
+                bg={viewType === "list" ? "gray.200" : "white"}
+                >
+                    List
+                </Button>
             </Stack>
         </Stack>
     )

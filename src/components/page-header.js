@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Stack, Flex } from '@chakra-ui/core';
 import { FaGithub, FaTwitter} from 'react-icons/fa';
 
-//Components
 import { Brand } from './brand';
 
 export function PageHeader () {
