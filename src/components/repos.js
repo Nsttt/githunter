@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Flex, Image, Heading, Text, Link, Stack, Button } from '@chakra-ui/core';
 import {GoStar, GoIssueOpened, GoRepoForked} from "react-icons/go";
+import moment from "moment";
 
 export function Repos(props) {
-    const {isListView} = props;
-
+    const {isListView = false, Repos} = props;
 
     return (
         <Flex borderWidth={1} bg="white" p="15px" rounded="5px" alightItems="center">
@@ -12,13 +12,13 @@ export function Repos(props) {
                 {!isListView && (
                 <Flex mb="15px">
                     <Image
-                    src="https://avatars0.githubusercontent.com/u/23436531?s=460&u=d3a533566c1f05521da0a1ff26e5c3d0a764ba76&v=4"
+                    src={Repos.owner.avatar_url}
                     w={"35px"}
                     h={"35px"}
                     rounded="5px" 
                     />
                     <Box ml="15px">
-                        <Heading fontSize="16px">Nsttt</Heading>
+                        <Heading fontSize="16px">{Repos.owner.login}</Heading>
                         <Text fontSize="13px">View Profile</Text>
                     </Box>
                 </Flex>
@@ -31,48 +31,50 @@ export function Repos(props) {
                                 <>
                                     <Text
                                         as="a"
-                                        href="https://github.com/nsttt"
+                                        href={Repos.owner.html_url}
                                         target="_blank"
                                     >
-                                        nsttt
+                                        {Repos.owner.login}
                                     </Text>
                                     &nbsp;/&nbsp;
                                 </>
                             )}
                             <Text
                                 as="a"
-                                href="https://github.com/nsttt/githunter"
+                                href={Repos.html_url}
                                 target="_blank"
                             >
-                                githunter
+                                {Repos.name}
                             </Text>
                         </Flex>
                         <Text fontSize="14px" color="gray.600">
                             Build by &middot;{" "}
                             <Link
                             fontWeight={600}
-                            href="https://github.com/nsttt"
+                            href={Repos.owner.html_url}
                             target="_blank"
                             >
-                                Nsttt
+                                {Repos.owner.login}
                             </Link>{" "}
-                            &middot; May 29, 2020
+                            &middot; {moment(Repos.created_at).format("MMMM D, YYYY")}
                         </Text>
                     </Box>
                 
                     <Text frontSize="14px" color="gray.900">
-                        Search for the most starred git projects
+                        {Repos.description}
                     </Text>
                 </Box>
 
                 <Stack isInline spacing="10px">
                     <Button
                         as="a"
+                        href={`${Repos.html_url}/stargazers`}
                         cursor="pointer"
                         leftIcon={GoStar}
                         variant="link"
-                        fontSize="14px"
+                        fontSize="13px"
                         iconSpacing="4px"
+                        target="_blank"
                         _hover={{textDecor: "none"}}
                     >
                         4000

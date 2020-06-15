@@ -1,37 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import { Select, Menu, MenuButton, MenuList, MenuItem, Button, Stack} from '@chakra-ui/core';
+import React from 'react';
+import { Select, Menu, MenuButton, MenuList, MenuItem, Button, Stack, Box, Icon} from '@chakra-ui/core';
 import {FaTable, FaList} from "react-icons/fa";
 
 import languages from '../data/languages.json'
 
 export function Filters(props) {
-    const {onViewChange} = props;
-    const [viewType, setViewType] = useState('grid');
-    
-    useEffect(() => {
-        onViewChange(viewType);
-    },[viewType]);
 
+    const {
+        onViewChange,
+        viewType,
+        onDateJumpChange,
+        dateJump,
+        language,
+        onLanguageChange,
+    } = props;
+    
     return(
         <Stack isInline>
-            <Select>
+            <Select value={language} onChange={(e) => onLanguageChange(e.target.value)}>
                 {languages.map((language) => (
-                    <option value={language.value}>{language.label}</option>
+                    <option key={language.value} value={language.value}>
+                        {language.label}
+                    </option>
                 ))}
             </Select>
 
             <Menu>
-                <MenuButton as={Button} bg="white" borderWidth={1} px="30px" fontWeight={400} leftIcon="calendar">
-                     Actions
+                <MenuButton
+                textAlign="left"
+                w="250px"
+                justifyContent="flex-start"
+                as={Button}
+                bg="white" 
+                borderWidth={1}
+                px="15px" 
+                fontWeight={400} 
+                _focus={{boxShadow: "none"}}
+                >
+                     <Icon name="calendar" mr={3} />
+                <Box as="span" textTransform="capitalize">{dateJump}</Box>
                 </MenuButton>
                 <MenuList>
-                    <MenuItem>Download</MenuItem>
-                    <MenuItem>Create a Copy</MenuItem>
-                    <MenuItem>Mark as Draft</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                    <MenuItem as="a" href="#">
-                    Attend a Workshop
-                    </MenuItem>
+                    <MenuItem onClick={() => onDateJumpChange("date")}>Daily</MenuItem>
+                    <MenuItem onClick={() => onDateJumpChange("week")}>Weekly</MenuItem>
+                    <MenuItem onClick={() => onDateJumpChange("month")}>Monthly</MenuItem>
+                    <MenuItem onClick={() => onDateJumpChange("year")}>Yearly</MenuItem>
                 </MenuList>
             </Menu>
 
