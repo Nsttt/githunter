@@ -7,6 +7,7 @@ import languages from '../data/languages.json'
 export function Filters(props) {
 
     const {
+        setViewType,
         onViewChange,
         viewType,
         onDateJumpChange,

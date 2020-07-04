@@ -13,7 +13,7 @@ function transformFilters({startDate, endDate, language}) {
     const transformedFilters = {};
 
     const languageQuery = language ? `language:${language} ` : "";
-    const dateQuery = `create:${startDate}..${endDate}`;
+    const dateQuery = `created:${startDate}..${endDate}`;
 
     transformedFilters.q = languageQuery + dateQuery;
     transformedFilters.sort = "stars";
@@ -59,7 +59,7 @@ export function Feed() {
                 {
                     startDate,
                     endDate,
-                    items: res.items,
+                    items: res.data.items,
                 },
             ])
         })
@@ -83,6 +83,7 @@ export function Feed() {
                 </Flex>
 
                 {repositories.map((repoGroup, counter) => {
+                    console.log(repoGroup)
                     const groupTitle = counter > 0 && (
                         <GroupTitle
                             startDate={repoGroup.startDate}
@@ -93,7 +94,9 @@ export function Feed() {
                         <Box>
                             {groupTitle}
                             <SimpleGrid columns={viewType === 'list' ? 1 : 3} spacing="15px">
-                                {repoGroup.items.map((repo) => (<Repos isListView={viewType === 'list'} repo={repo} />))}       
+                                {repoGroup.items.map((repo) => (
+                                <Repos isListView={viewType === 'list'} repo={repo} />
+                                ))}       
                             </SimpleGrid>
                         </Box>
                     )

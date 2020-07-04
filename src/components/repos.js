@@ -4,8 +4,8 @@ import {GoStar, GoIssueOpened, GoRepoForked} from "react-icons/go";
 import moment from "moment";
 
 export function Repos(props) {
-    const {isListView = false, Repos} = props;
-
+    const {isListView = false} = props;
+    const Repos = props.repo;
     return (
         <Flex borderWidth={1} bg="white" p="15px" rounded="5px" alightItems="center">
             <Flex flex={1} flexDir="column">
