@@ -2,14 +2,15 @@
 # GitHunter
 > GitHunt is a React application designed to show the most starred projects uploaded to GitHub in the desired space of time.
 
-![Contributions](https://img.shields.io/badge/contributions-welcome-blue?style=flat-square) ![Issues](https://img.shields.io/github/issues/nsttt/githunter?style=flat-square) ![License](https://img.shields.io/github/license/nsttt/githunter?style=flat-square)
+[![Contributions](https://img.shields.io/badge/contributions-welcome-blue?style=flat-square)](https://github.com/nsttt/githunter/compare/) [![Issues](https://img.shields.io/github/issues/nsttt/githunter?style=flat-square)](https://github.com/Nsttt/githunter/issues) [![License](https://img.shields.io/github/license/nsttt/githunter?style=flat-square)](https://github.com/Nsttt/githunter/blob/master/LICENSE.txt)
 
-[![INSERT YOUR GRAPHIC HERE](https://i.imgur.com/ItHcYOo.png)]()
+[![Screenshot](https://i.imgur.com/ItHcYOo.png)](https://github.com/Nsttt/githunter)
 
 ## Table of Contents 
 - [Usage](#Usage)
 - [Installation](#Installation)
-- [Contribute!](#Contribute!)
+- [Contribute](#Contribute)
+- [Support](#Support)
 - [License](#License)
 
 ---
@@ -36,7 +37,7 @@ It will create a `build` folder with the static files.
 
 ---
 
-## Contribute!
+## Contribute
 
 You can contribute to the development or improvement of this app and it will be much appreciated if you do !
 
@@ -71,8 +72,8 @@ Reach out to me at one of the following places!
 
 ## License
 
-[![License](https://img.shields.io/github/license/nsttt/githunter?style=flat-square)](http://badges.mit-license.org)
+[![License](https://img.shields.io/github/license/nsttt/githunter?style=flat-square)](https://github.com/Nsttt/githunter/blob/master/LICENSE.txt)
 
-- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+- **[MIT license](http://opensource.org/licenses/mit)**
 - Copyright 2020 © <a href="http://nstlopez.com" target="_blank">Néstor</a>.
 
