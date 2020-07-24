@@ -1,18 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Select,
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
   Button,
   Stack,
   Box,
   Icon,
+  MenuItemOption,
 } from "@chakra-ui/core";
 import { FaTable, FaList } from "react-icons/fa";
 
 import languages from "../data/languages.json";
+
+const dates = [
+  {
+    value: "day",
+    display: "Daily",
+  },
+  {
+    value: "week",
+    display: "Weekly",
+  },
+  {
+    value: "month",
+    display: "Monthly",
+  },
+  {
+    value: "year",
+    display: "Yearly",
+  },
+];
 
 export function Filters(props) {
   const {
@@ -30,8 +49,8 @@ export function Filters(props) {
         value={language}
         onChange={(e) => onLanguageChange(e.target.value)}
       >
-        {languages.map((language) => (
-          <option key={language.value} value={language.value}>
+        {languages.map((language, idx) => (
+          <option key={idx} value={language.value}>
             {language.label}
           </option>
         ))}
@@ -48,17 +67,22 @@ export function Filters(props) {
           px="15px"
           fontWeight={400}
           _focus={{ boxShadow: "none" }}
+          key="views"
         >
-          <Icon name="calendar" mr={3} />
-          <Box as="span" textTransform="capitalize">
+          <Icon name="calendar" mr={3} key="icon" />
+          <Box key="date" as="span" textTransform="capitalize">
             {dateJump}
           </Box>
         </MenuButton>
-        <MenuList>
-          <MenuItem onClick={() => onDateJumpChange("day")}>Daily</MenuItem>
-          <MenuItem onClick={() => onDateJumpChange("week")}>Weekly</MenuItem>
-          <MenuItem onClick={() => onDateJumpChange("month")}>Monthly</MenuItem>
-          <MenuItem onClick={() => onDateJumpChange("year")}>Yearly</MenuItem>
+        <MenuList key="menu-list">
+          {dates.map((date, id) => (
+            <MenuItemOption
+              key={id}
+              onClick={onDateJumpChange.bind(this, date.value)}
+            >
+              {date.display}
+            </MenuItemOption>
+          ))}
         </MenuList>
       </Menu>
 

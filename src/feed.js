@@ -23,9 +23,7 @@ function transformFilters({ startDate, endDate, language }) {
 }
 
 export function Feed() {
-  const { loading, error, get } = useFetch("https://api.github.com");
-  console.log("loading");
-  console.log(loading);
+  const { loading, get } = useFetch("https://api.github.com");
   const [viewType, setViewType] = useState("grid");
   const [dateJump, setDateJump] = useState("day");
   const [language, setLanguage] = useState();
@@ -53,16 +51,21 @@ export function Feed() {
     const filters = transformFilters({ language, startDate, endDate });
     const filtersQuery = new URLSearchParams(filters).toString();
 
-    get(`/search/repositories?${filtersQuery}`).then((res) => {
-      setRepositories([
-        ...repositories,
-        {
-          startDate,
-          endDate,
-          items: res.data.items,
-        },
-      ]);
-    });
+    get(`/search/repositories?${filtersQuery}`)
+      .then((res) => {
+        setRepositories([
+          ...repositories,
+          {
+            startDate,
+            endDate,
+            items: res.data.items,
+          },
+        ]);
+      })
+      .catch((err) => {
+        console.log("Cagada aqui");
+        console.log(err);
+      });
   }, [startDate]);
 
   return (
@@ -86,7 +89,6 @@ export function Feed() {
       </Flex>
 
       {repositories.map((repoGroup, counter) => {
-        console.log(repoGroup);
         const groupTitle = counter > 0 && (
           <GroupTitle
             startDate={repoGroup.startDate}
@@ -94,11 +96,11 @@ export function Feed() {
           />
         );
         return (
-          <Box>
+          <Box key="group-box">
             {groupTitle}
             <SimpleGrid columns={viewType === "list" ? 1 : 3} spacing="15px">
-              {repoGroup.items.map((repo) => (
-                <Repos isListView={viewType === "list"} repo={repo} />
+              {repoGroup.items.map((repo, idx) => (
+                <Repos isListView={viewType === "list"} repo={repo} key={idx} />
               ))}
             </SimpleGrid>
           </Box>

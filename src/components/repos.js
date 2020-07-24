@@ -49,7 +49,7 @@ export function Repos(props) {
 
         <Box mb="15px">
           <Box mb="10px">
-            <Flex fontSize="19px" as="a" color="purple.700">
+            <Flex fontSize="19px" color="purple.700">
               {isListView && (
                 <>
                   <Text as="a" href={Repos.owner.html_url} target="_blank">
