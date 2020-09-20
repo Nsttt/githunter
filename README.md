@@ -1,6 +1,6 @@
 <a href="http://www.nstlopez.com/githunter/"><img src="https://i.imgur.com/jI034fS.png" title="GitHunter" alt="GitHunter"></a>
 # GitHunter
-> GitHunt is a React application designed to show the most starred projects uploaded to GitHub in the desired space of time.
+> GitHunter is a React application designed to show the most starred projects uploaded to GitHub in the desired space of time.
 
 [![Contributions](https://img.shields.io/badge/contributions-welcome-blue?style=flat-square)](https://github.com/nsttt/githunter/compare/) [![Issues](https://img.shields.io/github/issues/nsttt/githunter?style=flat-square)](https://github.com/Nsttt/githunter/issues) [![License](https://img.shields.io/github/license/nsttt/githunter?style=flat-square)](https://github.com/Nsttt/githunter/blob/master/LICENSE.txt)
 
