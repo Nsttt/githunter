@@ -66,7 +66,7 @@ OR
 Reach out to me at one of the following places!
 
 - Website at <a href="http://nstlopez.com" target="_blank">`nstlopez.com`</a>
-- Twitter at <a href="http://twitter.com/nesteahd4k" target="_blank">`@NesteaHD4K`</a>
+- Twitter at <a href="http://twitter.com/nstlopez" target="_blank">`@nstlopez`</a>
 
 Original idea by <a href="https://github.com/kamranahmedse" target=_blank>Kamran Ahmed</a>
 
