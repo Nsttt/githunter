@@ -63,10 +63,10 @@ export function Feed() {
         ]);
       })
       .catch((err) => {
-        console.log("Cagada aqui");
+        console.log("Error aqui");
         console.log(err);
       });
-  }, [startDate]);
+  }, [startDate, repositories, language, endDate, get]);
 
   return (
     <Box maxWidth="1200px" mx="auto">
