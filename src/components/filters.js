@@ -8,30 +8,11 @@ import {
   Stack,
   Box,
   Icon,
-  MenuItemOption,
+  MenuItem,
 } from "@chakra-ui/core";
 import { FaTable, FaList } from "react-icons/fa";
 
 import languages from "../data/languages.json";
-
-const dates = [
-  {
-    value: "day",
-    display: "Daily",
-  },
-  {
-    value: "week",
-    display: "Weekly",
-  },
-  {
-    value: "month",
-    display: "Monthly",
-  },
-  {
-    value: "year",
-    display: "Yearly",
-  },
-];
 
 export function Filters(props) {
   const {
@@ -75,14 +56,10 @@ export function Filters(props) {
           </Box>
         </MenuButton>
         <MenuList key="menu-list">
-          {dates.map((date, id) => (
-            <MenuItemOption
-              key={id}
-              onClick={onDateJumpChange.bind(this, date.value)}
-            >
-              {date.display}
-            </MenuItemOption>
-          ))}
+          <MenuItem onClick={() => onDateJumpChange("day")}>Daily</MenuItem>
+          <MenuItem onClick={() => onDateJumpChange("week")}>Weekly</MenuItem>
+          <MenuItem onClick={() => onDateJumpChange("month")}>Monthly</MenuItem>
+          <MenuItem onClick={() => onDateJumpChange("year")}>Yearly</MenuItem>
         </MenuList>
       </Menu>
 

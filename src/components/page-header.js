@@ -23,7 +23,7 @@ export function PageHeader() {
           variantColor="blue"
           as="a"
           target="_blank"
-          href="https://twitter.com/intent/tweet?text=GitHunter – Starred project hunter for Github by @NesteaHD4K https://github.com/Nsttt/githunter"
+          href="https://twitter.com/intent/tweet?text=GitHunter – Starred project hunter for Github by @nstlopez https://github.com/Nsttt/githunter"
         >
           Tweet
         </Button>
