@@ -66,7 +66,8 @@ export function Feed() {
         console.log("Error aqui");
         console.log(err);
       });
-  }, [endDate, get, language, repositories, startDate]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [startDate]);
 
   return (
     <Box maxWidth="1200px" mx="auto" px="15px">
