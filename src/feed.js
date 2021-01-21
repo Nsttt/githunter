@@ -102,8 +102,8 @@ export function Feed() {
           <Box>
             {groupTitle}
             <SimpleGrid columns={viewType === "list" ? 1 : [1, 1, 2, 3, 3]} spacing="15px">
-              {repoGroup.items.map((repo) => (
-                <Repo isListView={viewType === "list"} repo={repo} />
+              {repoGroup.items.map((repo, id) => (
+                <Repo isListView={viewType === "list"} repo={repo} key={id} />
               ))}
             </SimpleGrid>
           </Box>
