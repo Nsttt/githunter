@@ -13,7 +13,7 @@ import { GoStar, GoIssueOpened, GoRepoForked } from "react-icons/go";
 import moment from "moment";
 import colors from "../data/colors.json";
 
-export function Repo(props) {
+export function Repo (props) {
   const { isListView = false, repo } = props;
   return (
     <Flex
@@ -91,12 +91,8 @@ export function Repo(props) {
               fontSize="14px"
               iconSpacing="4px"
               target="_blank"
-              _hover={{ textDecor: "none" }}
-              // colorScheme={
-              //   colors[repo.language].color
-              //     ? colors[repo.language].color
-              //     : "#000"
-              // }
+              _hover={{ textDecoration: "none" }}
+              color={colors[repo.language] ? colors[repo.language].color : "#fff"}
             >
               {repo.language}
             </Button>
