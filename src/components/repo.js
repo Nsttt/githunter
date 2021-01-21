@@ -13,7 +13,7 @@ import { GoStar, GoIssueOpened, GoRepoForked } from "react-icons/go";
 import moment from "moment";
 import colors from "../data/colors.json";
 
-export function Repo (props) {
+export function Repo(props) {
   const { isListView = false, repo } = props;
   return (
     <Flex
@@ -25,7 +25,7 @@ export function Repo (props) {
     >
       <Flex flex={1} flexDir="column">
         {!isListView && (
-          <Flex mb="15px"  as="a" href={repo.owner.html_url}>
+          <Flex mb="15px">
             <Image
               src={repo.owner.avatar_url}
               w={"35px"}
@@ -36,7 +36,7 @@ export function Repo (props) {
               <Heading fontSize="16px">{repo.owner.login}</Heading>
               <Text
                 as="a"
-                fontSize="13px"
+                fontSize="14px"
                 href={repo.owner.html_url}
                 target="_blank"
               >
@@ -63,15 +63,15 @@ export function Repo (props) {
             </Flex>
             <Text fontSize="14px" color="gray.600">
               <Box as={"span"} d={["none", "none", "inline", "inline"]}>
-              Build by &middot;{" "}
-              <Link
-                fontWeight={600}
-                href={repo.owner.html_url}
-                target="_blank"
-              >
-                {repo.owner.login}
-              </Link>{" "}
-              &middot;
+                Buil by &middot;{" "}
+                <Link
+                  fontWeight={600}
+                  href={repo.owner.html_url}
+                  target="_blank"
+                >
+                  {repo.owner.login}
+                </Link>{" "}
+                &middot;
               </Box>{" "}
               {moment(repo.created_at).format("MMMM D, YYYY")}
             </Text>
@@ -92,7 +92,9 @@ export function Repo (props) {
               iconSpacing="4px"
               target="_blank"
               _hover={{ textDecoration: "none" }}
-              color={colors[repo.language] ? colors[repo.language].color : "#fff"}
+              color={
+                colors[repo.language] ? colors[repo.language].color : "#fff"
+              }
             >
               {repo.language}
             </Button>

@@ -16,7 +16,7 @@ import languages from "../data/languages.json";
 
 export function Filters(props) {
   const {
-    inViewChange,
+    onViewChange,
     viewType,
     onDateJumpChange,
     dateJump,
@@ -74,7 +74,7 @@ export function Filters(props) {
       >
         <Button
           h="100%"
-          onClick={() => inViewChange("grid")}
+          onClick={() => onViewChange("grid")}
           fontWeight={400}
           roundedRight={0}
           leftIcon={FaTable}
@@ -84,7 +84,7 @@ export function Filters(props) {
         </Button>
         <Button
           h="100%"
-          onClick={() => inViewChange("list")}
+          onClick={() => onViewChange("list")}
           fontWeight={400}
           roundedLeft={0}
           leftIcon={FaList}

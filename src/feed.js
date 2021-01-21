@@ -66,7 +66,7 @@ export function Feed() {
         console.log("Error aqui");
         console.log(err);
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [startDate]);
 
   return (
@@ -74,7 +74,12 @@ export function Feed() {
       <PageHeader />
       {repositories.length === 0 && loading && <PageLoader />}
 
-      <Flex alignItems="center" justifyContent="space-between" mb="25px" flexDirection={["column", "column", "column", "row"]}>
+      <Flex
+        alignItems="center"
+        justifyContent="space-between"
+        mb="25px"
+        flexDirection={["column", "column", "column", "row"]}
+      >
         <GroupTitle
           startDate={repositories?.[0]?.startDate}
           endDate={repositories?.[0]?.endDate}
@@ -92,16 +97,19 @@ export function Feed() {
       {repositories.map((repoGroup, counter) => {
         const groupTitle = counter > 0 && (
           <Flex alignItems="center" justifyContent="center" mt="25px" mb="15px">
-          <GroupTitle
-            startDate={repoGroup.startDate}
-            endDate={repoGroup.endDate}
-          />
+            <GroupTitle
+              startDate={repoGroup.startDate}
+              endDate={repoGroup.endDate}
+            />
           </Flex>
         );
         return (
-          <Box>
+          <Box key={repoGroup}>
             {groupTitle}
-            <SimpleGrid columns={viewType === "list" ? 1 : [1, 1, 2, 3, 3]} spacing="15px">
+            <SimpleGrid
+              columns={viewType === "list" ? 1 : [1, 1, 2, 3, 3]}
+              spacing="15px"
+            >
               {repoGroup.items.map((repo, id) => (
                 <Repo isListView={viewType === "list"} repo={repo} key={id} />
               ))}
