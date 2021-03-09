@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Box, Flex, SimpleGrid, Button } from "@chakra-ui/core";
+import { Box, Flex, SimpleGrid, Button } from "@chakra-ui/react";
 import moment from "moment";
 import useFetch from "use-http";
 
-import { PageHeader } from "./components/page-header";
-import { GroupTitle } from "./components/group-title";
-import { Filters } from "./components/filters";
-import { Repo } from "./components/repo";
-import { PageLoader } from "./components/page-loader";
+import PageHeader from "./components/page-header";
+import GroupTitle from "./components/group-title";
+import Filters from "./components/filters";
+import Repo from "./components/repo";
+import PageLoader from "./components/page-loader";
 
 function transformFilters({ startDate, endDate, language }) {
   const transformedFilters = {};
@@ -22,7 +22,7 @@ function transformFilters({ startDate, endDate, language }) {
   return transformedFilters;
 }
 
-export function Feed() {
+export default function Feed() {
   const { get, loading } = useFetch("https://api.github.com");
   const [viewType, setViewType] = useState("grid");
   const [dateJump, setDateJump] = useState("day");
@@ -34,38 +34,32 @@ export function Feed() {
   const [endDate, setEndDate] = useState(moment().subtract(1, "day").format());
 
   useEffect(() => {
-    const endDate = moment().subtract(1, "day").format();
-    const startDate = moment(endDate).subtract(1, dateJump).format();
+    const effectEndDate = moment().subtract(1, "day").format();
+    const effectStartDate = moment(endDate).subtract(1, dateJump).format();
 
-    setEndDate(endDate);
-    setStartDate(startDate);
+    setEndDate(effectEndDate);
+    setStartDate(effectStartDate);
 
     setRepositories([]);
-  }, [dateJump, language]);
+  }, [dateJump, endDate, language]);
 
   useEffect(() => {
     if (!startDate) {
       return;
     }
-
     const filters = transformFilters({ language, startDate, endDate });
     const filtersQuery = new URLSearchParams(filters).toString();
 
-    get(`/search/repositories?${filtersQuery}`)
-      .then((data) => {
-        setRepositories([
-          ...repositories,
-          {
-            startDate,
-            endDate,
-            items: data.items,
-          },
-        ]);
-      })
-      .catch((err) => {
-        console.log("Error aqui");
-        console.log(err);
-      });
+    get(`/search/repositories?${filtersQuery}`).then((data) => {
+      setRepositories([
+        ...repositories,
+        {
+          startDate,
+          endDate,
+          items: data.items,
+        },
+      ]);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [startDate]);
 
@@ -110,8 +104,12 @@ export function Feed() {
               columns={viewType === "list" ? 1 : [1, 1, 2, 3, 3]}
               spacing="15px"
             >
-              {repoGroup.items.map((repo, id) => (
-                <Repo isListView={viewType === "list"} repo={repo} key={id} />
+              {repoGroup.items.map((repo) => (
+                <Repo
+                  isListView={viewType === "list"}
+                  repo={repo}
+                  key={repo.id}
+                />
               ))}
             </SimpleGrid>
           </Box>
@@ -125,7 +123,7 @@ export function Feed() {
             setEndDate(startDate);
             setStartDate(moment(startDate).subtract(1, dateJump).format());
           }}
-          variantColor="blue"
+          colorScheme="blue"
         >
           Load more
         </Button>

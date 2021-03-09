@@ -1,4 +1,5 @@
 import React from "react";
+import { nanoid } from "nanoid";
 import {
   Select,
   Menu,
@@ -7,14 +8,15 @@ import {
   Button,
   Stack,
   Box,
-  Icon,
   MenuItem,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
+import { CalendarIcon } from "@chakra-ui/icons";
+
 import { FaTable, FaList } from "react-icons/fa";
 
 import languages from "../data/languages.json";
 
-export function Filters(props) {
+export default function Filters(props) {
   const {
     onViewChange,
     viewType,
@@ -29,10 +31,12 @@ export function Filters(props) {
       <Select
         value={language}
         onChange={(e) => onLanguageChange(e.target.value)}
+        bg="white"
+        w="100px"
       >
-        {languages.map((language, idx) => (
-          <option key={idx} value={language.value}>
-            {language.label}
+        {languages.map((lang) => (
+          <option key={nanoid()} value={lang.value}>
+            {lang.label}
           </option>
         ))}
       </Select>
@@ -40,7 +44,7 @@ export function Filters(props) {
       <Menu>
         <MenuButton
           textAlign="left"
-          w="250px"
+          w="120px"
           justifyContent="flex-start"
           as={Button}
           bg="white"
@@ -50,7 +54,7 @@ export function Filters(props) {
           _focus={{ boxShadow: "none" }}
           key="views"
         >
-          <Icon name="calendar" mr={3} key="icon" />
+          <CalendarIcon mr={3} />
           <Box key="date" as="span" textTransform="capitalize">
             {dateJump}
           </Box>
@@ -77,7 +81,7 @@ export function Filters(props) {
           onClick={() => onViewChange("grid")}
           fontWeight={400}
           roundedRight={0}
-          leftIcon={FaTable}
+          leftIcon={<FaTable />}
           bg={viewType === "grid" ? "gray.200" : "white"}
         >
           Grid
@@ -87,7 +91,7 @@ export function Filters(props) {
           onClick={() => onViewChange("list")}
           fontWeight={400}
           roundedLeft={0}
-          leftIcon={FaList}
+          leftIcon={<FaList />}
           bg={viewType === "list" ? "gray.200" : "white"}
         >
           List

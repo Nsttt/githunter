@@ -8,12 +8,12 @@ import {
   Link,
   Stack,
   Button,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import { GoStar, GoIssueOpened, GoRepoForked } from "react-icons/go";
 import moment from "moment";
 import colors from "../data/colors.json";
 
-export function Repo(props) {
+export default function Repo(props) {
   const { isListView = false, repo } = props;
   return (
     <Flex
@@ -21,7 +21,7 @@ export function Repo(props) {
       bg="white"
       p="15px"
       rounded="5px"
-      alightItems="flex-start"
+      alignItems="flex-start"
     >
       <Flex flex={1} flexDir="column">
         {!isListView && (
@@ -102,12 +102,12 @@ export function Repo(props) {
           <Button
             as="a"
             cursor="pointer"
-            leftIcon={GoStar}
+            leftIcon={<GoStar />}
             variant="link"
             fontSize="14px"
             iconSpacing="4px"
             target="_blank"
-            href={repo.html_url + "/stargazers"}
+            href={`${repo.html_url}/stargazers`}
             _hover={{ textDecor: "none" }}
           >
             {repo.stargazers_count}
@@ -115,28 +115,28 @@ export function Repo(props) {
           <Button
             as="a"
             cursor="pointer"
-            leftIcon={GoRepoForked}
+            leftIcon={<GoIssueOpened />}
             variant="link"
             fontSize="14px"
             iconSpacing="4px"
             target="_blank"
-            href={repo.html_url + "/network/members"}
+            href={`${repo.html_url}/issues`}
             _hover={{ textDecor: "none" }}
           >
-            {repo.forks_count}
+            {repo.open_issues_count}
           </Button>
           <Button
             as="a"
             cursor="pointer"
-            leftIcon={GoIssueOpened}
+            leftIcon={<GoRepoForked />}
             variant="link"
             fontSize="14px"
             iconSpacing="4px"
             target="_blank"
-            href={repo.html_url + "/issues"}
+            href={`${repo.html_url}/network/members`}
             _hover={{ textDecor: "none" }}
           >
-            {repo.open_issues_count}
+            {repo.forks_count}
           </Button>
         </Stack>
       </Flex>

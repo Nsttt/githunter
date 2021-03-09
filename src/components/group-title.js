@@ -1,8 +1,8 @@
 import React from "react";
-import { Text } from "@chakra-ui/core";
+import { Text } from "@chakra-ui/react";
 import moment from "moment";
 
-export function GroupTitle({ startDate, endDate }) {
+export default function GroupTitle({ startDate, endDate }) {
   if (!startDate || !endDate) {
     return null;
   }

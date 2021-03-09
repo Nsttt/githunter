@@ -1,7 +1,7 @@
 import React from "react";
-import { Flex, Spinner } from "@chakra-ui/core";
+import { Flex, Spinner } from "@chakra-ui/react";
 
-export function PageLoader() {
+export default function PageLoader() {
   return (
     <Flex
       position="fixed"
